@@ -1,0 +1,142 @@
+#text {
+  color:#ffffff;
+  text-align: center;
+}
+
+#greeting {
+  color:#ffffff;
+  text-align: center;
+
+}
+
+.t1 {
+  color:#ffffff;
+  text-align: center;
+  transition: opacity 1s ease-in;
+  opacity:1;
+  margin-top: 320px;
+  overflow-wrap: break-word;
+  margin-left:440px;
+  font-size:30px; 
+  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  /* transition: opacity 5s ease-in;
+  opacity: 1;
+  transition: opacity 5s ease-out;
+  opacity: 0; */
+  width: 500px;
+  word-wrap: break-word;
+
+  /* margin-left: 100px; */
+}
+
+
+.t2 {
+  color:#ffffff;
+  text-align: center;
+  margin-top:45px;
+  overflow-wrap: break-word;
+
+}
+
+.button {
+  background-color: transparent;
+  border: 2px solid #505050;
+  border-radius: 10px;
+  opacity: 0.6;
+  /* position: relative; */
+  text-align: center;
+  /* margin-top: 380px; */
+  margin-left: 54.2%;
+  transform: translate(-105%);
+  color: white;
+  padding: 16px 32px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #505050;
+  color:#ffffff;
+  font-weight:bold;
+
+}
+
+.btn_1 {
+  background-color: transparent;
+  border: 2px solid #505050;
+  border-radius: 10px;
+  opacity: 0.6;
+  /* position: relative; */
+  text-align: center;
+  /* margin-top: 380px; */
+  margin-left: 50%;
+  transform: translate(-105%);
+  color: white;
+  padding: 16px 32px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn_1:hover {
+  background-color: #505050;
+  color:#ffffff;
+  font-weight:bold;
+}
+
+.btn_2{
+  background-color: transparent;
+  border: 2px solid #505050;
+  border-radius: 10px;
+  opacity: 0.6;
+  /* position: absolute; */
+  /* text-align: center;
+  margin-top: 50px;
+  margin-left: 150px; */
+  margin-left: -50px;
+  transform: translate(-40px);
+  color: white;
+  padding: 16px 32px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn_2:hover {
+  background-color: #505050;
+  color:#ffffff;
+  font-weight:bold;
+}
+
+
+.btn_3{
+  background-color: transparent;
+  border: 2px solid #505050;
+  border-radius: 10px;
+  opacity: 0.6;
+  /* position: absolute; */
+  /* text-align: center;
+  margin-top: 50px;
+  margin-left: 150px; */
+  margin-left: 1150px;
+  margin-top: 460px;
+  transform: translate(-40px);
+  color: white;
+  padding: 16px 32px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn_3:hover {
+  background-color: #505050;
+  color:#ffffff;
+  font-weight:bold;
+}
+
+
+
+#paragraph {
+  color: #ffffff;
+}
