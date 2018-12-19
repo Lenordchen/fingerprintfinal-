@@ -16,14 +16,14 @@
   opacity:1;
   margin-top: 320px;
   overflow-wrap: break-word;
-  margin-left:440px;
-  font-size:30px; 
+  margin-left:470px;
+  font-size:26px;
   /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
   /* transition: opacity 5s ease-in;
   opacity: 1;
   transition: opacity 5s ease-out;
   opacity: 0; */
-  width: 500px;
+  width: 600px;
   word-wrap: break-word;
 
   /* margin-left: 100px; */
@@ -35,7 +35,9 @@
   text-align: center;
   margin-top:45px;
   overflow-wrap: break-word;
-
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* transition: opacity 10s ease-out;
+  opacity: 0; */
 }
 
 .button {
@@ -77,6 +79,8 @@
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  transition: opacity 5s ease-in;
+opacity: 1;
 }
 
 .btn_1:hover {
@@ -119,8 +123,8 @@
   /* text-align: center;
   margin-top: 50px;
   margin-left: 150px; */
-  margin-left: 1150px;
-  margin-top: 460px;
+  margin-left: 1290px;
+  margin-top: 515px;
   transform: translate(-40px);
   color: white;
   padding: 16px 32px;
