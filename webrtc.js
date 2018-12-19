@@ -8,7 +8,8 @@ var spots;
 var fingerprint;
 var spots = [];
 var circles = [];
-
+var count = 0;
+var player = new Tone.Player("chimes/bgm.mp3").toMaster();
 
 var playState = 0;
 var myScale = ['F2','G2','Bb2','D3','E3','F3','G3','A3','Bb3','C4','D4'];
@@ -34,28 +35,6 @@ var sampler = new Tone.Sampler({
 sampler.toMaster();
 const polySynth = new Tone.PolySynth(6,Tone.Synth).toMaster();
 
-/*
-
-Playing chords depending on the numberOfBluePixels.
-Use Poly to play many notes at the same time.
-
-
-
-var chordScale = [["C2","E2","G2"],["D2","Gb2","A2"]];
-
-const polySynth = new Tone.PolySynth(10,Tone.MonoSynth).toMaster();
-
-if(numberOfBluePixels > 215 && numberOfBluePixels >0){
-  //regular mapping for one note
-}else{
-  //chord mapping
-  var chordIndex = map(numberOfBluePixels,215,220,0,chordScale.length);
-  var chord = chordScale[chordIndex];
-
-  // polySynth`.triggerAttackRelease(chord,'8n',time);
-}
-*/
-
 
  // function preload(){
  //    fingerprint = loadImage('fingerprints/000004.jpg');
@@ -63,6 +42,7 @@ if(numberOfBluePixels > 215 && numberOfBluePixels >0){
 
  function setup() {
    // create canvas
+   noCursor();
     canvas = createCanvas(windowWidth, windowHeight);
     canvas.position(0,0);
     canvas.style('z-index','-1');
@@ -78,7 +58,7 @@ if(numberOfBluePixels > 215 && numberOfBluePixels >0){
     // circles = [];
    //maxAttempts = fingerprint.width * fingerprint.height
 
-    greeting = createElement('h2', 'Welcome,  please wear the headphones');
+    greeting = createElement('h2', 'Welcome,  please wear the headphones and put your finger on the box in the left. If you are ready, press Start');
     greeting.class("t1");
     // greeting.id("greeting");
     // greeting.position(width/2-140, height/2-50);
@@ -93,10 +73,12 @@ if(numberOfBluePixels > 215 && numberOfBluePixels >0){
  function welcome() {
     greeting.hide();
     button.hide();
-    t1 = createElement('h2','Each biological organism has an unique pattern, and fingerprints are the most unique one in human bodies')
+    t1 = createElement('h2','Each biological organism has an unique pattern, and your fingerprints are unique to each and everyone of you')
     t1.class("t1");
     //t1.position(width/2-120, height/2-50);
-    let changeOne = setTimeout(changeText, 100);
+    let changeOne = setTimeout(changeText, 5000);
+    player.start();
+  playing = true;
 
   }
 
@@ -106,33 +88,33 @@ if(numberOfBluePixels > 215 && numberOfBluePixels >0){
     t2 = createElement('h2', 'Because of this, fingerprints have been widely used for biometric and social identification');
     t2.class("t1");
     //t2.position(width/2-120, height/2-50);
-    let changeTwo = setTimeout(changeText_2, 3000);
+    let changeTwo = setTimeout(changeText_2, 5000);
   }
 
   function changeText_2() {
     t2.hide();
-    t3 = createElement('h2', 'However, fingerprint is also a source to represent yourself, a media to connect you and everything around you');
+    t3 = createElement('h2', 'However, fingerprint represents our individuality');
     t3.class("t1");
-    let changeThree = setTimeout(changeText_3, 3000);
+    let changeThree = setTimeout(changeText_3, 5000);
   }
 
   function changeText_3(){
     t3.hide();
-    t4 = createElement('h2', 'Instead of being asked to do identification, you will hear some melodies, the melodies from you, your body');
+    t4 = createElement('h2', 'Instead of being asked for proving identification, you will hear the melodies from you and your body');
     t4.class("t1");
-    let changeFour = setTimeout(changeText_4, 100);
+    let changeFour = setTimeout(changeText_4, 5000);
   }
 
   function changeText_4(){
     t4.hide();
     t5 = createElement('h2', 'All biometric data will be automatically deleted and will not being archived');
     t5.class("t1");
-    let changeFive = setTimeout(startQuestion, 100);
+    let changeFive = setTimeout(startQuestion, 5000);
   }
 
   function startQuestion(){
     t5.hide();
-    t6 = createElement('h2', 'Put your finger on and start your sound journey');
+    t6 = createElement('h2', ' If you are ready, press start and start your sound journey');
     t6.class("t1");
     btn_1 = createButton("Start")
     btn_2 = createButton("Leave")
@@ -145,7 +127,19 @@ if(numberOfBluePixels > 215 && numberOfBluePixels >0){
 
   }
 
+  function finalText_1(){
+  t6.hide();
+  btn_1.hide();
+  btn_2.hide();
+  t10 = createElement('h2', 'Thank you');
+  t10.class('t1');
+
+}
+
 function loadLatestFingerprint(){
+
+  player.stop();
+  playing = false;
     loadJSON('http://localhost:8080/getfingerprints',gotFingerprint);
   }
 
@@ -157,8 +151,9 @@ function gotFingerprint(listOfFingerprint){
 function fingerPrintLoad(latestFingerprint){
     fingerprint = latestFingerprint;
 
-    showInstruction();
+
     // startExperience();
+    showInstruction();
 }
 
 function showInstruction() {
@@ -277,14 +272,13 @@ function showInstruction() {
 
      //if (attempts < maxAttempts) {
        while (count < total) {
-         var newC = newCircle();
-          if (newC !== null) {
+          // if (newC !== null) {
           //put new circles into the array.
             if (circles.length < 4000){
-              circles.push(newC);}
-              count++;
-           }
-
+              var newC = newCircle();
+              circles.push(newC);
+            }
+            count++;
         }
 
         if (playState == 10) {
@@ -403,7 +397,7 @@ function playToneForRow(y, imgWidth) {
 
     Tone.Transport.start();
 
-    let changeScene = setTimeout(showTextAgain, 2150);
+    let changeScene = setTimeout(showTextAgain, 5000);
 
  }
 
@@ -434,15 +428,15 @@ function playToneForRow(y, imgWidth) {
   //pick the point outside of the circle.
   //check whether the point is in the circle or not.
 
-  for (let i = 0; i < circles.length; i++) {
-    var circle = circles[i];
-    var d = dist(x, y, circle.x, circle.y);
-    if (d < circle.r) {
-      //inside of the circle
-      valid = false;
-      break;
-    }
-  }
+  // for (let i = 0; i < circles.length; i++) {
+  //   var circle = circles[i];
+  //   var d = dist(x, y, circle.x, circle.y);
+  //   if (d < circle.r) {
+  //     //inside of the circle
+  //     valid = false;
+  //     break;
+  //   }
+  // }
   if (valid) {
     //add new circles
     return new Circle(x, y, fingerprint.width, fingerprint.height);
@@ -459,9 +453,9 @@ function fadeCircles() {
     }
   }
   btn_3.hide();
-  t6 = createElement('h2', 'Fingerprint is not only an identification, but also a media to connect you, the rest of you, and everything around you. ');
+  t6 = createElement('h2', 'Fingerprint is not only a form of identification, but also a medium to connect us with the world ');
   t6.class('t1');
-  let changeSix = setTimeout(changeTextAgain, 100);
+  let changeSix = setTimeout(changeTextAgain, 5000);
   playState = 3;
 }
 
@@ -471,15 +465,15 @@ function fadeCircles() {
 
 function changeTextAgain() {
   t6.hide();
-  t7 = createElement('h2', 'This connection happens among us, reminds us that we are part of the universe, we are different yet uniform. ');
+  t7 = createElement('h2', 'This connection serves to remind us that we are interconnected individuals ');
   t7.class('t1');
-  let changeSeven = setTimeout(startQuestionAgain,100);
+  let changeSeven = setTimeout(startQuestionAgain,5000);
 
 }
 
 function startQuestionAgain() {
   t7.hide();
-  t8 = createElement('h2', 'Do you want to be part of the universe?');
+  t8 = createElement('h2', 'Do you want to join the cosmos?');
   t8.class('t1');
   btn_4 = createButton('Yes');
   btn_4.class('btn_1');
@@ -545,10 +539,19 @@ function gatherCircles(){
 
     circle.show(fingerPrintX, fingerPrintY, fingerPrintDrawnWidth, fingerPrintDrawnHeight);
 }
-    let showTextFinal = setTimeout(finalText,3000);
+  let changeLast = setTimeout(finalText, 3000);
 }
 
 function finalText(){
+    btn_4.hide();
+    btn_5.hide();
+    t8.hide();
+    // playState = 6;
+
+
+    if (count == 0){
     t9 = createElement('h2', 'Thank you');
     t9.class('t1');
+    }
+    count++;
 }
